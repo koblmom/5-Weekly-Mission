@@ -159,4 +159,9 @@ header {
     width: 100%;
     padding-bottom: 1.6rem;
   }
+  .sign-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 0 3.2rem;
+  }
 }
