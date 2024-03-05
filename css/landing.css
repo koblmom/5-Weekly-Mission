@@ -1,4 +1,4 @@
-@import url(./global.css);
+@import url(./shared/global.css);
 
 body {
   display: flex;
@@ -202,7 +202,7 @@ footer {
 
 /* 타블렛 */
 
-@media (max-width: 1199px) {
+@media screen and (max-width: (var--tablet-width)) {
   .gnb {
     padding: 0 20rem;
   }
@@ -246,7 +246,7 @@ footer {
 }
 
 /* 모바일 */
-@media (max-width: 767px) {
+@media screen and (max-width: (var--mobile-width)) {
   .gnb {
     padding: 0 3.2rem;
   }

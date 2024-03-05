@@ -1,4 +1,4 @@
-@import url(./global.css);
+@import url(./shared/global.css);
 
 body {
   background-color: var(--background);
@@ -40,7 +40,7 @@ header {
   border-bottom: 0.1rem solid var(--primary);
 }
 
-.sign-box {
+.auth-box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,35 +48,35 @@ header {
   width: 40rem;
 }
 
-.sign-form {
+.auth-form {
   display: flex;
   flex-direction: column;
   row-gap: 3rem;
   width: 100%;
 }
 
-.sign-inputs {
+.auth-inputs {
   display: flex;
   flex-direction: column;
   row-gap: 2.4rem;
 }
 
-.sign-input-box {
+.auth-input-box {
   display: flex;
   flex-direction: column;
   row-gap: 1.2rem;
 }
 
-.sign-password {
+.auth-password {
   position: relative;
 }
 
-.sign-input-label {
+.auth-input-label {
   font-size: 1.4rem;
   font-weight: 400;
 }
 
-.sign-input {
+.auth-input {
   padding: 1.8rem 1.5rem;
   border-radius: 0.8rem;
   border: 0.1rem solid var(--gray20);
@@ -84,7 +84,7 @@ header {
   line-height: 150%;
 }
 
-.sign-input:focus {
+.auth-input:focus {
   border-color: var(--primary);
 }
 
@@ -151,7 +151,7 @@ header {
 }
 
 /* 모바일 */
-@media (max-width: 767px) {
+@media screen and (max-width: (var--mobile-width)) {
   body {
     padding: 12rem 0 3.2rem;
   }
@@ -159,7 +159,7 @@ header {
     width: 100%;
     padding-bottom: 1.6rem;
   }
-  .sign-box {
+  .auth-box {
     width: 100%;
     max-width: 400px;
     padding: 0 3.2rem;
