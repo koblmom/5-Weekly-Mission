@@ -67,6 +67,23 @@ header {
   row-gap: 1.2rem;
 }
 
+.auth-inputs input:focus {
+  border: 1px solid var(--primary);
+}
+
+.auth-inputs input:invalid {
+  border: 1px solid var(--red);
+}
+
+.empty {
+  border: 1px solid var(--red) !important;
+}
+
+.emailErrorMessage {
+  color: var(--red);
+  font-size: 1.4rem;
+}
+
 .auth-password {
   position: relative;
 }
