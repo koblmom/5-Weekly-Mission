@@ -25,7 +25,7 @@ function validateEmail() {
   }
 }
 
-/* password password */
+/* validate password */
 function validatePassword() {
   if (pwInput.value === "") {
     pwInput.classList.add("empty");
@@ -45,7 +45,6 @@ emailInput.addEventListener("focusout", validateEmail);
 pwInput.addEventListener("focusout", validatePassword);
 
 /* Submit loginform */
-
 document
   .querySelector(".submit-button")
   .addEventListener("click", submitLoginForm);
@@ -68,3 +67,17 @@ function submitLoginForm() {
     appendPWError("비밀번호를 확인해 주세요.");
   }
 }
+
+/* Password eye toggle */
+const eyeImg = document.querySelector(".eyeImg");
+const pwField = document.querySelector(".pwInput");
+
+eyeImg.addEventListener("click", function () {
+  if (pwField.type === "password") {
+    pwField.setAttribute("type", "text");
+    eyeImg.setAttribute("src", "../images/signin/eye-on.svg");
+  } else {
+    pwField.setAttribute("type", "password");
+    eyeImg.setAttribute("src", "../images/signin/eye-off.svg");
+  }
+});
