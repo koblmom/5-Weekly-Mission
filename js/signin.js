@@ -5,24 +5,41 @@ function isValidEmail(email) {
 }
 
 /* Append message */
-function appendErrorMessage(message) {
+function appendEmailError(message) {
   emailErrorMessage.textContent = message;
+}
+function appendPWError(message) {
+  pwErrorMessage.textContent = message;
 }
 
 /* Validate email */
 function validateEmail() {
   if (emailInput.value === "") {
     emailInput.classList.add("empty");
-    appendErrorMessage("이메일을 입력해 주세요.");
+    appendEmailError("이메일을 입력해 주세요.");
   } else if (!isValidEmail(emailInput.value)) {
-    appendErrorMessage("올바른 이메일 주소가 아닙니다.");
+    appendEmailError("올바른 이메일 주소가 아닙니다.");
   } else {
     emailInput.classList.remove("empty");
-    appendErrorMessage(" ");
+    appendEmailError(" ");
+  }
+}
+
+/* password password */
+function validatePassword() {
+  if (pwInput.value === "") {
+    pwInput.classList.add("empty");
+    appendPWError("비밀번호를 입력해 주세요.");
+  } else {
+    pwInput.classList.remove("empty");
+    appendPWError(" ");
   }
 }
 
 const emailInput = document.querySelector("#emailInput");
 const emailErrorMessage = document.querySelector(".emailErrorMessage");
+const pwInput = document.querySelector("#pwInput");
+const pwErrorMessage = document.querySelector(".pwErrorMessage");
 
 emailInput.addEventListener("focusout", validateEmail);
+pwInput.addEventListener("focusout", validatePassword);

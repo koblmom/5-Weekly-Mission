@@ -79,7 +79,8 @@ header {
   border: 1px solid var(--red) !important;
 }
 
-.emailErrorMessage {
+.emailErrorMessage,
+.pwErrorMessage {
   color: var(--red);
   font-size: 1.4rem;
 }
