@@ -35,7 +35,6 @@ function validatePassword() {
     appendPWError(" ");
   }
 }
-
 const emailInput = document.querySelector(".emailInput");
 const emailErrorMessage = document.querySelector(".emailErrorMessage");
 const pwInput = document.querySelector(".pwInput");
@@ -69,15 +68,14 @@ function submitLoginForm() {
 }
 
 /* Password eye toggle */
-const eyeImg = document.querySelector(".eyeImg");
+const eyeButton = document.querySelector(".eye-button");
 const pwField = document.querySelector(".pwInput");
 
-eyeImg.addEventListener("click", function () {
+eyeButton.addEventListener("click", function () {
   if (pwField.type === "password") {
     pwField.setAttribute("type", "text");
-    eyeImg.setAttribute("src", "../images/signin/eye-on.svg");
+    eyeButton.classList.toggle("eye-button-off");
   } else {
     pwField.setAttribute("type", "password");
-    eyeImg.setAttribute("src", "../images/signin/eye-off.svg");
   }
 });

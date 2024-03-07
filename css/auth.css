@@ -112,6 +112,12 @@ header {
   right: 1.5rem;
   width: 1.6rem;
   height: 1.6rem;
+  top: 50%;
+  background-image: url("../images/signin/eye-on.svg");
+}
+
+.eye-button-off {
+  background-image: url("../images/signin/eye-off.svg");
 }
 
 .btn {
