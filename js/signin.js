@@ -1,8 +1,8 @@
-const emailInput = document.querySelector(".emailInput");
-const emailErrorMessage = document.querySelector(".emailErrorMessage");
-const pwInput = document.querySelector(".pwInput");
-const pwErrorMessage = document.querySelector(".pwErrorMessage");
-const submitButton = document.querySelector(".submit-button");
+const emailInput = document.querySelector('input[type="email"]');
+const pwInput = document.querySelector('input[type="password"]');
+const emailErrorMessage = document.querySelector("#email-error-message");
+const pwErrorMessage = document.querySelector("#pw-error-message");
+const submitButton = document.querySelector("#submit-button");
 const eyeButton = document.querySelector(".eye-button");
 
 const messages = {
@@ -56,13 +56,8 @@ function submitLoginForm() {
 }
 
 function togglePassword() {
-  if (pwInput.type === "password") {
-    pwInput.type = "text";
-    eyeButton.classList.toggle("eye-button-off");
-  } else {
-    pwInput.type = "password";
-    eyeButton.classList.remove("eye-button-off");
-  }
+  pwInput.type = pwInput.type === "password" ? "text" : "password";
+  eyeButton.classList.toggle("eye-button-off");
 }
 
 emailInput.addEventListener("focusout", validateEmail);
@@ -70,7 +65,7 @@ pwInput.addEventListener("focusout", validatePassword);
 submitButton.addEventListener("click", submitLoginForm);
 eyeButton.addEventListener("click", togglePassword);
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
     event.preventDefault(); // Enter 키의 기본 동작(폼 제출) 막기
     submitLoginForm();
