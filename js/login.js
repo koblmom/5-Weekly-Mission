@@ -1,5 +1,5 @@
 import { showMessage } from "./common/validation.js";
-import { messages } from "./common/message.js";
+import { messages, testMembers } from "./common/contants.js";
 
 export function submitLoginForm(
   emailInput,
@@ -10,10 +10,13 @@ export function submitLoginForm(
   const email = emailInput.value;
   const password = pwInput.value;
 
-  if (email === "test@codeit.com" && password === "codeit101") {
+  if (
+    email === testMembers.TEST_EMAIL &&
+    password === testMembers.TEST_PASSWORD
+  ) {
     location.href = "./folder.html";
   } else {
-    showMessage(emailErrorMessage, messages.incorrectCredentials);
-    showMessage(pwErrorMessage, messages.incorrectCredentials);
+    showMessage(emailErrorMessage, messages.INCORRECT_CREDENTIALS);
+    showMessage(pwErrorMessage, messages.INCORRECT_CREDENTIALS);
   }
 }
