@@ -9,13 +9,14 @@ const pwErrorMessage = document.querySelector("#pw-error-message");
 const submitButton = document.querySelector("#submit-button");
 const eyeButton = document.querySelector(".eye-button");
 
-emailInput.addEventListener("focusout", () => {
-  validateEmail(emailInput, emailErrorMessage, true);
-});
+emailInput.addEventListener("focusout", () =>
+  validateEmail(emailInput, emailErrorMessage, true)
+);
 
 pwInput.addEventListener("focusout", () =>
-  validatePassword(pwInput, pwErrorMessage)
+  validatePassword(pwInput, pwErrorMessage, true)
 );
+
 submitButton.addEventListener("click", () =>
   submitLoginForm(emailInput, pwInput, emailErrorMessage, pwErrorMessage)
 );
