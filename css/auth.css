@@ -80,7 +80,8 @@ header {
 }
 
 #email-error-message,
-#pw-error-message {
+#pw-error-message,
+#pw-confirm-message {
   color: var(--red);
   font-size: 1.4rem;
 }

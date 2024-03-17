@@ -49,3 +49,19 @@ export function validatePassword(
     showMessage(pwErrorMessage, " ");
   }
 }
+
+export function validateConfirmPassword(
+  confirmPwInput,
+  confirmErrorMessage,
+  pwInput
+) {
+  const confirmPassword = confirmPwInput.value;
+
+  if (pwInput.value !== confirmPassword) {
+    confirmPwInput.classList.add("empty");
+    showMessage(confirmErrorMessage, "비밀번호가 일치하지 않아요.");
+  } else {
+    confirmPwInput.classList.remove("empty");
+    showMessage(confirmErrorMessage, " ");
+  }
+}
