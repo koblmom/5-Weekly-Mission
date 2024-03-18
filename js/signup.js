@@ -3,8 +3,8 @@ import {
   clearInput,
   displayErrorMessage,
   validatePassword,
-  validateConfirmPassword,
   checkDuplicateEmail,
+  validateConfirmPassword,
 } from "./common/validation.js";
 import { submitLoginForm } from "./login.js";
 import { togglePassword } from "./common/ui.js";
@@ -15,7 +15,7 @@ const pwInput = document.querySelector('input[type="password"]');
 const comfirmPw = document.querySelector("#confirm-password");
 const emailErrorElement = document.querySelector("#email-error-message");
 const passwordErrorElement = document.querySelector("#pw-error-message");
-const confirmErrorMessage = document.querySelector("#pw-confirm-message");
+const confirmErrorElement = document.querySelector("#pw-confirm-message");
 const submitButton = document.querySelector("#submit-button");
 const eyeButton = document.querySelector(".eye-button");
 const confirmeyeButton = document.querySelector(".confirm-eye-button");
@@ -35,17 +35,15 @@ function onEmailFocusOut(emailInput, emailErrorElement) {
       messages.EMAIL_DUPLICATE
     );
   }
-
   if (isValid) {
     return clearInput(emailInput, emailErrorElement);
   }
-
   displayErrorMessage(emailInput, emailErrorElement, message);
 }
 
-pwInput.addEventListener("focusout", () =>
-  onPasswordFocusOut(pwInput, passwordErrorElement)
-);
+pwInput.addEventListener("focusout", () => {
+  onPasswordFocusOut(pwInput, passwordErrorElement);
+});
 
 function onPasswordFocusOut(pwInput, passwordErrorElement) {
   const password = pwInput.value;
@@ -54,13 +52,23 @@ function onPasswordFocusOut(pwInput, passwordErrorElement) {
   if (isValid) {
     return clearInput(pwInput, passwordErrorElement);
   }
-
   displayErrorMessage(pwInput, passwordErrorElement, message);
 }
 
 comfirmPw.addEventListener("focusout", () =>
-  validateConfirmPassword(comfirmPw, confirmErrorMessage, pwInput)
+  onConfirmFoucsOut(pwInput, comfirmPw)
 );
+
+function onConfirmFoucsOut(pwInput, comfirmPw) {
+  const password = pwInput.value;
+  const confirmPassword = comfirmPw.value;
+  const [isValid, message] = validateConfirmPassword(password, confirmPassword);
+
+  if (isValid) {
+    return clearInput(comfirmPw, confirmErrorElement);
+  }
+  displayErrorMessage(comfirmPw, confirmErrorElement, message);
+}
 
 eyeButton.addEventListener("click", () => togglePassword(pwInput, eyeButton));
 confirmeyeButton.addEventListener("click", () =>

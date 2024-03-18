@@ -42,23 +42,17 @@ export function checkDuplicateEmail(email) {
 export function validatePassword(password) {
   if (password === "") {
     return [false, messages.PASSWORD_EMPTY];
+  } else if (!checkStrongPassword(password)) {
+    return [false, messages.PASSWORD_WEAK];
   }
 
   return [true, null];
 }
 
-export function validateConfirmPassword(
-  confirmPwInput,
-  confirmErrorMessage,
-  pwInput
-) {
-  const confirmPassword = confirmPwInput.value;
-
-  if (pwInput.value !== confirmPassword) {
-    confirmPwInput.classList.add("empty");
-    showMessage(confirmErrorMessage, "비밀번호가 일치하지 않아요.");
-  } else {
-    confirmPwInput.classList.remove("empty");
-    showMessage(confirmErrorMessage, " ");
+export function validateConfirmPassword(password, confirmPassword) {
+  if (password !== confirmPassword) {
+    return [false, messages.PASSWORD_MISMACTH];
   }
+
+  return [true, null];
 }
