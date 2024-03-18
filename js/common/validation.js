@@ -12,51 +12,39 @@ export function showMessage(ele, message) {
   ele.textContent = message;
 }
 
-export function clearEmailInput(emailInput, emailErrorElement) {
-  emailInput.classList.remove("empty");
-  showMessage(emailErrorElement, " ");
+export function clearInput(inputElement, errorElement) {
+  inputElement.classList.remove("empty");
+  showMessage(errorElement, " ");
 }
 
-export function displayErrorMessage(emailInput, emailErrorElement, message) {
-  emailInput.classList.add("empty");
-  showMessage(emailErrorElement, message);
+export function displayErrorMessage(inputElement, errorElement, message) {
+  inputElement.classList.add("empty");
+  showMessage(errorElement, message);
 }
 
 export function validateEmail(email) {
-  if (email.value === "") {
+  if (email === "") {
     return [false, messages.EMAIL_EMPTY];
-  } else if (!checkValidEmail(email.value)) {
+  } else if (!checkValidEmail(email)) {
     return [false, messages.EMAIL_INVALID];
   }
 
   return [true, null];
 }
 
-export function checkDuplicateEmail(email, emailErrorElement) {
-  if (email.value === testMembers.TEST_EMAIL) {
-    email.classList.add("empty");
-    showMessage(emailErrorElement, messages.EMAIL_DUPLICATE);
+export function checkDuplicateEmail(email) {
+  if (email === testMembers.TEST_EMAIL) {
     return false;
   }
   return true;
 }
 
-export function validatePassword(
-  pwInput,
-  pwErrorMessage,
-  isStrongPassword = false
-) {
-  const password = pwInput.value;
+export function validatePassword(password) {
   if (password === "") {
-    pwInput.classList.add("empty");
-    showMessage(pwErrorMessage, messages.PASSWORD_EMPTY);
-  } else if (isStrongPassword && !checkStrongPassword(password)) {
-    pwInput.classList.add("empty");
-    showMessage(pwErrorMessage, messages.PASSWORD_WEAK);
-  } else {
-    pwInput.classList.remove("empty");
-    showMessage(pwErrorMessage, " ");
+    return [false, messages.PASSWORD_EMPTY];
   }
+
+  return [true, null];
 }
 
 export function validateConfirmPassword(
