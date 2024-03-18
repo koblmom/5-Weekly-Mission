@@ -6,19 +6,19 @@ import {
   checkDuplicateEmail,
   validateConfirmPassword,
 } from "./common/validation.js";
-import { submitLoginForm } from "./login.js";
+import { submitRegisterForm } from "./register.js";
 import { togglePassword } from "./common/ui.js";
 import { messages } from "./common/contants.js";
 
 const emailInput = document.querySelector('input[type="email"]');
 const pwInput = document.querySelector('input[type="password"]');
-const comfirmPw = document.querySelector("#confirm-password");
+const confirmPw = document.querySelector("#confirm-password");
 const emailErrorElement = document.querySelector("#email-error-message");
 const passwordErrorElement = document.querySelector("#pw-error-message");
 const confirmErrorElement = document.querySelector("#pw-confirm-message");
 const submitButton = document.querySelector("#submit-button");
-const eyeButton = document.querySelector(".eye-button");
-const confirmeyeButton = document.querySelector(".confirm-eye-button");
+const togglePasswordVisibility = document.querySelector(".eye-button");
+const toggleConfirmVisibility = document.querySelector(".confirm-eye-button");
 
 emailInput.addEventListener("focusout", () => {
   onEmailFocusOut(emailInput, emailErrorElement);
@@ -55,29 +55,49 @@ function onPasswordFocusOut(pwInput, passwordErrorElement) {
   displayErrorMessage(pwInput, passwordErrorElement, message);
 }
 
-comfirmPw.addEventListener("focusout", () =>
-  onConfirmFoucsOut(pwInput, comfirmPw)
+confirmPw.addEventListener("focusout", () =>
+  onConfirmFoucsOut(pwInput, confirmPw)
 );
 
-function onConfirmFoucsOut(pwInput, comfirmPw) {
+function onConfirmFoucsOut(pwInput, confirmPw) {
   const password = pwInput.value;
-  const confirmPassword = comfirmPw.value;
+  const confirmPassword = confirmPw.value;
   const [isValid, message] = validateConfirmPassword(password, confirmPassword);
 
   if (isValid) {
-    return clearInput(comfirmPw, confirmErrorElement);
+    return clearInput(confirmPw, confirmErrorElement);
   }
-  displayErrorMessage(comfirmPw, confirmErrorElement, message);
+  displayErrorMessage(confirmPw, confirmErrorElement, message);
 }
 
-eyeButton.addEventListener("click", () => togglePassword(pwInput, eyeButton));
-confirmeyeButton.addEventListener("click", () =>
-  togglePassword(comfirmPw, confirmeyeButton)
+togglePasswordVisibility.addEventListener("click", () =>
+  togglePassword(pwInput, togglePasswordVisibility)
 );
+toggleConfirmVisibility.addEventListener("click", () =>
+  togglePassword(confirmPw, toggleConfirmVisibility)
+);
+
+submitButton.addEventListener("click", () => {
+  submitRegisterForm(
+    emailInput,
+    pwInput,
+    confirmPw,
+    emailErrorElement,
+    passwordErrorElement,
+    confirmErrorElement
+  );
+});
 
 document.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
-    submitLoginForm(emailInput, pwInput, emailErrorMessage, pwErrorMessage);
+    submitRegisterForm(
+      emailInput,
+      pwInput,
+      confirmPw,
+      emailErrorElement,
+      passwordErrorElement,
+      confirmErrorElement
+    );
   }
 });

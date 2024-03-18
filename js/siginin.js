@@ -12,7 +12,7 @@ const pwInput = document.querySelector('input[type="password"]');
 const emailErrorElement = document.querySelector("#email-error-message");
 const passwordErrorElement = document.querySelector("#pw-error-message");
 const submitButton = document.querySelector("#submit-button");
-const eyeButton = document.querySelector(".eye-button");
+const togglePasswordVisibility = document.querySelector(".eye-button");
 
 emailInput.addEventListener("focusout", () => {
   onEmailFocusOut(emailInput, emailErrorElement);
@@ -43,13 +43,20 @@ function onPasswordFocusOut(pwInput, passwordErrorElement) {
 }
 
 submitButton.addEventListener("click", () => {
-  submitLoginForm(emailInput, pwInput, emailErrorMessage, pwErrorMessage);
+  submitLoginForm(emailInput, pwInput, emailErrorElement, passwordErrorElement);
 });
-eyeButton.addEventListener("click", () => togglePassword(pwInput, eyeButton));
+togglePasswordVisibility.addEventListener("click", () =>
+  togglePassword(pwInput, togglePasswordVisibility)
+);
 
 document.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
-    submitLoginForm(emailInput, pwInput, emailErrorMessage, pwErrorMessage);
+    submitLoginForm(
+      emailInput,
+      pwInput,
+      emailErrorElement,
+      passwordErrorElement
+    );
   }
 });
