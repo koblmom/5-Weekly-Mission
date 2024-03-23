@@ -57,7 +57,7 @@ signForm.addEventListener("submit", function (event) {
   submitLoginForm(emailInput, pwInput, emailErrorElement, passwordErrorElement);
 });
 
-function submitLoginForm(
+async function submitLoginForm(
   emailInput,
   pwInput,
   emailErrorMessage,
@@ -66,12 +66,24 @@ function submitLoginForm(
   const email = emailInput.value;
   const password = pwInput.value;
 
-  if (
-    email === testMembers.TEST_EMAIL &&
-    password === testMembers.TEST_PASSWORD
-  ) {
-    location.href = "./folder.html";
-  } else {
+  try {
+    const response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+
+    if (response.ok) {
+      location.href = "./folder.html";
+    } else {
+      throw new Error("ERROR");
+    }
+  } catch (error) {
     showMessage(emailErrorMessage, messages.INCORRECT_CREDENTIALS);
     showMessage(pwErrorMessage, messages.INCORRECT_CREDENTIALS);
   }
