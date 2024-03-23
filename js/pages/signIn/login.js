@@ -1,5 +1,5 @@
-import { showMessage } from "./common/validation.js";
-import { messages, testMembers } from "./common/contants.js";
+import { showMessage } from "../../utils/ui.js";
+import { messages, testMembers } from "../../contants/contants.js";
 
 export function submitLoginForm(
   emailInput,

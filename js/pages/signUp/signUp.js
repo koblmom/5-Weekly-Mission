@@ -1,24 +1,27 @@
 import {
+  emailInput,
+  pwInput,
+  confirmPw,
+  emailErrorElement,
+  passwordErrorElement,
+  confirmErrorElement,
+  submitButton,
+  togglePasswordVisibility,
+  toggleConfirmVisibility,
+} from "./ui.js";
+import {
   validateEmail,
-  clearInput,
-  displayErrorMessage,
   validatePassword,
   checkDuplicateEmail,
   validateConfirmPassword,
-} from "./common/validation.js";
+} from "../../utils/validation.js";
 import { submitRegisterForm } from "./register.js";
-import { togglePassword } from "./common/ui.js";
-import { messages } from "./common/contants.js";
-
-const emailInput = document.querySelector('input[type="email"]');
-const pwInput = document.querySelector('input[type="password"]');
-const confirmPw = document.querySelector("#confirm-password");
-const emailErrorElement = document.querySelector("#email-error-message");
-const passwordErrorElement = document.querySelector("#pw-error-message");
-const confirmErrorElement = document.querySelector("#pw-confirm-message");
-const submitButton = document.querySelector("#submit-button");
-const togglePasswordVisibility = document.querySelector(".eye-button");
-const toggleConfirmVisibility = document.querySelector(".confirm-eye-button");
+import {
+  togglePassword,
+  displayErrorMessage,
+  clearInput,
+} from "../../utils/ui.js";
+import { messages } from "../../contants/contants.js";
 
 emailInput.addEventListener("focusout", () => {
   onEmailFocusOut(emailInput, emailErrorElement);
@@ -26,7 +29,7 @@ emailInput.addEventListener("focusout", () => {
 
 function onEmailFocusOut(emailInput, emailErrorElement) {
   const email = emailInput.value;
-  const [isValid, message] = validateEmail(email);
+  const [isValidEmail, emailErrorMessage] = validateEmail(email);
 
   if (!checkDuplicateEmail(email)) {
     return displayErrorMessage(
@@ -35,10 +38,10 @@ function onEmailFocusOut(emailInput, emailErrorElement) {
       messages.EMAIL_DUPLICATE
     );
   }
-  if (isValid) {
+  if (isValidEmail) {
     return clearInput(emailInput, emailErrorElement);
   }
-  displayErrorMessage(emailInput, emailErrorElement, message);
+  displayErrorMessage(emailInput, emailErrorElement, emailErrorMessage);
 }
 
 pwInput.addEventListener("focusout", () => {
@@ -47,12 +50,12 @@ pwInput.addEventListener("focusout", () => {
 
 function onPasswordFocusOut(pwInput, passwordErrorElement) {
   const password = pwInput.value;
-  const [isValid, message] = validatePassword(password);
+  const [isValidPassword, passwordErrorMessage] = validatePassword(password);
 
-  if (isValid) {
+  if (isValidPassword) {
     return clearInput(pwInput, passwordErrorElement);
   }
-  displayErrorMessage(pwInput, passwordErrorElement, message);
+  displayErrorMessage(pwInput, passwordErrorElement, passwordErrorMessage);
 }
 
 confirmPw.addEventListener("focusout", () =>

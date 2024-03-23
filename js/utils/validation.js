@@ -1,4 +1,4 @@
-import { messages, testMembers } from "./contants.js";
+import { messages, testMembers } from "../contants/contants.js";
 
 function checkValidEmail(email) {
   return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i.test(email);
@@ -6,20 +6,6 @@ function checkValidEmail(email) {
 
 function checkStrongPassword(password) {
   return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
-}
-
-export function showMessage(ele, message) {
-  ele.textContent = message;
-}
-
-export function clearInput(inputElement, errorElement) {
-  inputElement.classList.remove("empty");
-  showMessage(errorElement, " ");
-}
-
-export function displayErrorMessage(inputElement, errorElement, message) {
-  inputElement.classList.add("empty");
-  showMessage(errorElement, message);
 }
 
 export function validateEmail(email) {

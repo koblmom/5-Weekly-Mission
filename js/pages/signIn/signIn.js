@@ -1,18 +1,19 @@
 import {
-  validateEmail,
+  emailInput,
+  pwInput,
+  emailErrorElement,
+  passwordErrorElement,
+  submitButton,
+  togglePasswordVisibility,
+} from "./ui.js";
+
+import { validateEmail, validatePassword } from "../../utils/validation.js";
+import { submitLoginForm } from "./login.js";
+import {
+  togglePassword,
   clearInput,
   displayErrorMessage,
-  validatePassword,
-} from "./common/validation.js";
-import { submitLoginForm } from "./login.js";
-import { togglePassword } from "./common/ui.js";
-
-const emailInput = document.querySelector('input[type="email"]');
-const pwInput = document.querySelector('input[type="password"]');
-const emailErrorElement = document.querySelector("#email-error-message");
-const passwordErrorElement = document.querySelector("#pw-error-message");
-const submitButton = document.querySelector("#submit-button");
-const togglePasswordVisibility = document.querySelector(".eye-button");
+} from "../../utils/ui.js";
 
 emailInput.addEventListener("focusout", () => {
   onEmailFocusOut(emailInput, emailErrorElement);
@@ -20,12 +21,12 @@ emailInput.addEventListener("focusout", () => {
 
 function onEmailFocusOut(emailInput, emailErrorElement) {
   const email = emailInput.value;
-  const [isValid, message] = validateEmail(email);
+  const [isValidEmail, emailErrorMessage] = validateEmail(email);
 
-  if (isValid) {
+  if (isValidEmail) {
     return clearInput(emailInput, emailErrorElement);
   }
-  displayErrorMessage(emailInput, emailErrorElement, message);
+  displayErrorMessage(emailInput, emailErrorElement, emailErrorMessage);
 }
 
 pwInput.addEventListener("focusout", () => {
@@ -34,12 +35,12 @@ pwInput.addEventListener("focusout", () => {
 
 function onPasswordFocusOut(pwInput, passwordErrorElement) {
   const password = pwInput.value;
-  const [isValid, message] = validatePassword(password);
+  const [isValidPassword, passwordErrorMessage] = validatePassword(password);
 
-  if (isValid) {
+  if (isValidPassword) {
     return clearInput(pwInput, passwordErrorElement);
   }
-  displayErrorMessage(pwInput, passwordErrorElement, message);
+  displayErrorMessage(pwInput, passwordErrorElement, passwordErrorMessage);
 }
 
 submitButton.addEventListener("click", () => {
