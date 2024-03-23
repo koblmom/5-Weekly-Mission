@@ -5,7 +5,7 @@ import {
   emailErrorElement,
   passwordErrorElement,
   confirmErrorElement,
-  submitButton,
+  signForm,
   togglePasswordVisibility,
   toggleConfirmVisibility,
 } from "./ui.js";
@@ -15,8 +15,8 @@ import {
   checkDuplicateEmail,
   validateConfirmPassword,
 } from "../../utils/validation.js";
-import { submitRegisterForm } from "./register.js";
 import {
+  showMessage,
   togglePassword,
   displayErrorMessage,
   clearInput,
@@ -80,7 +80,13 @@ toggleConfirmVisibility.addEventListener("click", () =>
   togglePassword(confirmPw, toggleConfirmVisibility)
 );
 
-submitButton.addEventListener("click", () => {
+signForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const emailInput = form.querySelector('input[type="email"]');
+  const pwInput = form.querySelector('input[type="password"]');
+  const emailErrorElement = form.querySelector("#email-error-message");
+  const passwordErrorElement = form.querySelector("#pw-error-message");
+
   submitRegisterForm(
     emailInput,
     pwInput,
@@ -91,16 +97,18 @@ submitButton.addEventListener("click", () => {
   );
 });
 
-document.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    submitRegisterForm(
-      emailInput,
-      pwInput,
-      confirmPw,
-      emailErrorElement,
-      passwordErrorElement,
-      confirmErrorElement
-    );
+export function submitRegisterForm(emailInput, pwInput, confirmPw) {
+  const isEmailInputValid = validateEmail(emailInput.value);
+  const isPasswordInputValid = validatePassword(pwInput.value);
+  const isConfirmPasswordInputValid = validateConfirmPassword(
+    pwInput.value,
+    confirmPw.value
+  );
+  if (
+    isEmailInputValid &&
+    isPasswordInputValid &&
+    isConfirmPasswordInputValid
+  ) {
+    location.href = "./folder.html";
   }
-});
+}

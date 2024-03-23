@@ -3,13 +3,13 @@ import {
   pwInput,
   emailErrorElement,
   passwordErrorElement,
-  submitButton,
+  signForm,
   togglePasswordVisibility,
 } from "./ui.js";
-
+import { messages, testMembers } from "../../contants/contants.js";
 import { validateEmail, validatePassword } from "../../utils/validation.js";
-import { submitLoginForm } from "./login.js";
 import {
+  showMessage,
   togglePassword,
   clearInput,
   displayErrorMessage,
@@ -43,21 +43,36 @@ function onPasswordFocusOut(pwInput, passwordErrorElement) {
   displayErrorMessage(pwInput, passwordErrorElement, passwordErrorMessage);
 }
 
-submitButton.addEventListener("click", () => {
-  submitLoginForm(emailInput, pwInput, emailErrorElement, passwordErrorElement);
-});
 togglePasswordVisibility.addEventListener("click", () =>
   togglePassword(pwInput, togglePasswordVisibility)
 );
 
-document.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    submitLoginForm(
-      emailInput,
-      pwInput,
-      emailErrorElement,
-      passwordErrorElement
-    );
-  }
+signForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const emailInput = form.querySelector('input[type="email"]');
+  const pwInput = form.querySelector('input[type="password"]');
+  const emailErrorElement = form.querySelector("#email-error-message");
+  const passwordErrorElement = form.querySelector("#pw-error-message");
+
+  submitLoginForm(emailInput, pwInput, emailErrorElement, passwordErrorElement);
 });
+
+function submitLoginForm(
+  emailInput,
+  pwInput,
+  emailErrorMessage,
+  pwErrorMessage
+) {
+  const email = emailInput.value;
+  const password = pwInput.value;
+
+  if (
+    email === testMembers.TEST_EMAIL &&
+    password === testMembers.TEST_PASSWORD
+  ) {
+    location.href = "./folder.html";
+  } else {
+    showMessage(emailErrorMessage, messages.INCORRECT_CREDENTIALS);
+    showMessage(pwErrorMessage, messages.INCORRECT_CREDENTIALS);
+  }
+}
