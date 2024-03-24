@@ -12,7 +12,7 @@ import {
   clearInput,
   displayErrorMessage,
 } from "../../utils/ui.js";
-import { submitLoginForm, checkAccessToken } from "./api.js";
+import { submitLoginForm } from "./api.js";
 
 emailInput.addEventListener("focusout", () => {
   onEmailFocusOut(emailInput, emailErrorElement);
@@ -54,14 +54,4 @@ signForm.addEventListener("submit", function (event) {
   const passwordErrorElement = form.querySelector("#pw-error-message");
 
   submitLoginForm(emailInput, pwInput, emailErrorElement, passwordErrorElement);
-});
-
-function redirectToFolderPage() {
-  if (checkAccessToken()) {
-    location.href = "./folder.html";
-  }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  redirectToFolderPage();
 });

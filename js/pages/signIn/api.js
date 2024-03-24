@@ -2,11 +2,7 @@ import { showMessage } from "../../utils/ui.js";
 import { messages, urls } from "../../contants/contants.js";
 
 function saveAccessToken(token) {
-  localStorage.setItem("acessToken", token);
-}
-
-function checkAccessToken() {
-  return localStorage.getItem("accessToken") !== null;
+  localStorage.setItem("accessToken", token);
 }
 
 async function submitLoginForm(
@@ -43,4 +39,7 @@ async function submitLoginForm(
   }
 }
 
-export { submitLoginForm, checkAccessToken };
+if (localStorage.accessToken !== undefined) {
+  location.href = "./folder.html";
+}
+export { submitLoginForm };
