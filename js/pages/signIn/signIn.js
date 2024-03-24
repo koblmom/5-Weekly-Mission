@@ -6,14 +6,13 @@ import {
   signForm,
   togglePasswordVisibility,
 } from "./ui.js";
-import { messages, testMembers } from "../../contants/contants.js";
 import { validateEmail, validatePassword } from "../../utils/validation.js";
 import {
-  showMessage,
   togglePassword,
   clearInput,
   displayErrorMessage,
 } from "../../utils/ui.js";
+import { submitLoginForm, checkAccessToken } from "./api.js";
 
 emailInput.addEventListener("focusout", () => {
   onEmailFocusOut(emailInput, emailErrorElement);
@@ -57,34 +56,12 @@ signForm.addEventListener("submit", function (event) {
   submitLoginForm(emailInput, pwInput, emailErrorElement, passwordErrorElement);
 });
 
-async function submitLoginForm(
-  emailInput,
-  pwInput,
-  emailErrorMessage,
-  pwErrorMessage
-) {
-  const email = emailInput.value;
-  const password = pwInput.value;
-
-  try {
-    const response = await fetch("https://bootcamp-api.codeit.kr/api/sign-in", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
-
-    if (response.ok) {
-      location.href = "./folder.html";
-    } else {
-      throw new Error("ERROR");
-    }
-  } catch (error) {
-    showMessage(emailErrorMessage, messages.INCORRECT_CREDENTIALS);
-    showMessage(pwErrorMessage, messages.INCORRECT_CREDENTIALS);
+function redirectToFolderPage() {
+  if (checkAccessToken()) {
+    location.href = "./folder.html";
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  redirectToFolderPage();
+});

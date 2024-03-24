@@ -12,3 +12,7 @@ export const testMembers = {
   TEST_EMAIL: "test@codeit.com",
   TEST_PASSWORD: "codeit101",
 };
+
+export const urls = {
+  BASE_URL: "https://bootcamp-api.codeit.kr/api",
+};
