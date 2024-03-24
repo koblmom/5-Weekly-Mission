@@ -19,8 +19,11 @@ import {
   displayErrorMessage,
   clearInput,
 } from "../../utils/ui.js";
-import { checkDuplicateEmail } from "./api.js";
-import { messages } from "../../contants/contants.js";
+import {
+  checkDuplicateEmail,
+  submitRegisterForm,
+  checkAccessToken,
+} from "./api.js";
 
 emailInput.addEventListener("focusout", () => {
   onEmailFocusOut(emailInput, emailErrorElement);
@@ -76,31 +79,17 @@ signForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const emailInput = form.querySelector('input[type="email"]');
   const pwInput = form.querySelector('input[type="password"]');
-  const emailErrorElement = form.querySelector("#email-error-message");
-  const passwordErrorElement = form.querySelector("#pw-error-message");
+  const confirmPw = form.querySelector("#confirm-password");
 
-  submitRegisterForm(
-    emailInput,
-    pwInput,
-    confirmPw,
-    emailErrorElement,
-    passwordErrorElement,
-    confirmErrorElement
-  );
+  submitRegisterForm(emailInput, pwInput, confirmPw);
 });
 
-export function submitRegisterForm(emailInput, pwInput, confirmPw) {
-  const isEmailInputValid = validateEmail(emailInput.value);
-  const isPasswordInputValid = validatePassword(pwInput.value);
-  const isConfirmPasswordInputValid = validateConfirmPassword(
-    pwInput.value,
-    confirmPw.value
-  );
-  if (
-    isEmailInputValid &&
-    isPasswordInputValid &&
-    isConfirmPasswordInputValid
-  ) {
+function redirectToFolderPage() {
+  if (checkAccessToken()) {
     location.href = "./folder.html";
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  redirectToFolderPage();
+});

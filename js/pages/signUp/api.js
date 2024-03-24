@@ -1,5 +1,18 @@
 import { showMessage } from "../../utils/ui.js";
 import { messages, urls } from "../../contants/contants.js";
+import {
+  validateEmail,
+  validatePassword,
+  validateConfirmPassword,
+} from "../../utils/validation.js";
+
+function saveAccessToken(token) {
+  localStorage.setItem("acessToken", token);
+}
+
+function checkAccessToken() {
+  return localStorage.getItem("accessToken") !== null;
+}
 
 async function checkDuplicateEmail(emailInput, emailErrorMessage) {
   try {
@@ -20,4 +33,42 @@ async function checkDuplicateEmail(emailInput, emailErrorMessage) {
   }
 }
 
-export { checkDuplicateEmail };
+async function submitRegisterForm(emailInput, pwInput, confirmPw) {
+  const email = emailInput.value;
+  const password = pwInput.value;
+  const confirmPassword = confirmPw.value;
+  const isEmailInputValid = validateEmail(email);
+  const isPasswordInputValid = validatePassword(password);
+  const isConfirmPasswordInputValid = validateConfirmPassword(
+    password,
+    confirmPassword
+  );
+
+  if (
+    isEmailInputValid[0] === true &&
+    isPasswordInputValid[0] === true &&
+    isConfirmPasswordInputValid[0] === true
+  ) {
+    try {
+      const response = await fetch(urls.BASE_URL + "/sign-up", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+      if (response.status === 200) {
+        const token = await response.json();
+        saveAccessToken(token.data.accessToken);
+        location.href = "./folder.html";
+      } else {
+        throw new Error("ERROR");
+      }
+    } catch (error) {
+      console.log("회원가입 오류");
+    }
+  }
+}
+
+export { checkDuplicateEmail, submitRegisterForm, checkAccessToken };
