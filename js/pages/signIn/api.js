@@ -35,7 +35,6 @@ async function submitLoginForm(
       saveAccessToken(token.data.accessToken);
       location.href = "./folder.html";
     } else {
-      console.log(response.text());
       throw new Error("ERROR");
     }
   } catch (error) {

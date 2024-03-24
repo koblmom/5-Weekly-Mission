@@ -12,15 +12,14 @@ import {
 import {
   validateEmail,
   validatePassword,
-  checkDuplicateEmail,
   validateConfirmPassword,
 } from "../../utils/validation.js";
 import {
-  showMessage,
   togglePassword,
   displayErrorMessage,
   clearInput,
 } from "../../utils/ui.js";
+import { checkDuplicateEmail } from "./api.js";
 import { messages } from "../../contants/contants.js";
 
 emailInput.addEventListener("focusout", () => {
@@ -30,14 +29,7 @@ emailInput.addEventListener("focusout", () => {
 function onEmailFocusOut(emailInput, emailErrorElement) {
   const email = emailInput.value;
   const [isValidEmail, emailErrorMessage] = validateEmail(email);
-
-  if (!checkDuplicateEmail(email)) {
-    return displayErrorMessage(
-      emailInput,
-      emailErrorElement,
-      messages.EMAIL_DUPLICATE
-    );
-  }
+  checkDuplicateEmail(email, emailErrorElement);
   if (isValidEmail) {
     return clearInput(emailInput, emailErrorElement);
   }

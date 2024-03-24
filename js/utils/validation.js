@@ -1,4 +1,4 @@
-import { messages, testMembers } from "../contants/contants.js";
+import { messages } from "../contants/contants.js";
 
 function checkValidEmail(email) {
   return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i.test(email);
@@ -16,13 +16,6 @@ export function validateEmail(email) {
   }
 
   return [true, null];
-}
-
-export function checkDuplicateEmail(email) {
-  if (email === testMembers.TEST_EMAIL) {
-    return false;
-  }
-  return true;
 }
 
 export function validatePassword(password) {
