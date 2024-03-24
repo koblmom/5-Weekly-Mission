@@ -19,11 +19,7 @@ import {
   displayErrorMessage,
   clearInput,
 } from "../../utils/ui.js";
-import {
-  checkDuplicateEmail,
-  submitRegisterForm,
-  checkAccessToken,
-} from "./api.js";
+import { checkDuplicateEmail, submitRegisterForm } from "./api.js";
 
 emailInput.addEventListener("focusout", () => {
   onEmailFocusOut(emailInput, emailErrorElement);
@@ -82,14 +78,4 @@ signForm.addEventListener("submit", function (event) {
   const confirmPw = form.querySelector("#confirm-password");
 
   submitRegisterForm(emailInput, pwInput, confirmPw);
-});
-
-function redirectToFolderPage() {
-  if (checkAccessToken()) {
-    location.href = "./folder.html";
-  }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  redirectToFolderPage();
 });

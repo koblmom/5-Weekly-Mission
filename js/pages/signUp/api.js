@@ -7,11 +7,7 @@ import {
 } from "../../utils/validation.js";
 
 function saveAccessToken(token) {
-  localStorage.setItem("acessToken", token);
-}
-
-function checkAccessToken() {
-  return localStorage.getItem("accessToken") !== null;
+  localStorage.setItem("accessToken", token);
 }
 
 async function checkDuplicateEmail(emailInput, emailErrorMessage) {
@@ -70,5 +66,8 @@ async function submitRegisterForm(emailInput, pwInput, confirmPw) {
     }
   }
 }
+if (localStorage.accessToken !== undefined) {
+  location.href = "./folder.html";
+}
 
-export { checkDuplicateEmail, submitRegisterForm, checkAccessToken };
+export { checkDuplicateEmail, submitRegisterForm };
