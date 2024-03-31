@@ -4,7 +4,7 @@ const BASE_URL = "https://bootcamp-api.codeit.kr/";
 
 async function fetchData(url) {
   try {
-    const response = await axios.get(`${BASE_URL}api/sample/user`);
+    const response = await axios.get(`${BASE_URL}${url}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -12,4 +12,10 @@ async function fetchData(url) {
   }
 }
 
-export default fetchData;
+export async function fetchUserData() {
+  return await fetchData("api/sample/user");
+}
+
+export async function fetchFolderData() {
+  return await fetchData("api/sample/folder");
+}

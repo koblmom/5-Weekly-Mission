@@ -2,7 +2,7 @@ import "./NavigationBar.css";
 import useFetch from "../hook/fetchDataHook";
 
 function NavigationBar() {
-  const data = useFetch("https://bootcamp-api.codeit.kr");
+  const [userData] = useFetch("user");
 
   return (
     <nav className="NavigtionBar">
@@ -14,13 +14,13 @@ function NavigationBar() {
             alt="logo"
           ></img>
         </a>
-        {data ? (
+        {userData ? (
           <div className="Navigation-profile">
             <img
               className="Navigation-profileImg"
-              src={data[0]?.profileImageSource}
+              src={userData?.profileImageSource}
             />
-            <span className="Navigation-profileEmail">{data[0]?.email}</span>
+            <span className="Navigation-profileEmail">{userData?.email}</span>
           </div>
         ) : (
           <a>
