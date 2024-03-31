@@ -1,5 +1,5 @@
 import "./NavigationBar.css";
-import useFetch from "../hook/fetchDataHook";
+import useFetch from "../../hook/fetchDataHook";
 
 function NavigationBar() {
   const [userData] = useFetch("user");
