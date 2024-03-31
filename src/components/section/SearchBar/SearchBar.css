@@ -1,6 +1,7 @@
 .SearchBar {
   position: relative;
   width: 100%;
+  row-gap: 4rem;
 }
 
 .SearchBar-input {

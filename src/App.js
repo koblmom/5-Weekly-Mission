@@ -1,7 +1,6 @@
 import NavigationBar from "./components/section/NavigationBar/NavigationBar";
 import FolderInfo from "./components/section/FolderInfo/FolderInfo";
-import SearchBar from "./components/section/SearchBar/SearchBar";
-import CardData from "./components/section/CardData/CardData";
+import MainContent from "./components/section/MainContent/MainContent";
 import "./App.css";
 import "./global.css";
 
@@ -10,8 +9,7 @@ function App() {
     <>
       <NavigationBar />
       <FolderInfo />
-      <SearchBar />
-      <CardData />
+      <MainContent />
     </>
   );
 }

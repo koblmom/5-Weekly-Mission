@@ -1,0 +1,12 @@
+.Main-layout {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 112.4rem;
+  padding: 0 3.2rem;
+  row-gap: 3.2rem;
+  width: 100%;
+  row-gap: 4rem;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
