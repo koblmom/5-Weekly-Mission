@@ -1,4 +1,4 @@
-.NavagtionBar {
+.NavigtionBar {
   display: flex;
   justify-content: center;
   position: sticky;
@@ -23,6 +23,28 @@
   @media (min-width: 1200px) {
     max-width: 192rem;
     padding: 0 20rem;
+  }
+}
+
+.Navigation-profile {
+  display: flex;
+  align-items: center;
+  column-gap: 0.6rem;
+}
+
+.Navigation-profileImg {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+}
+
+.Navigation-profileEmail {
+  display: none;
+  font-size: 1.4rem;
+  color: var(--gray100);
+
+  @media (min-width: 768px) {
+    display: inline;
   }
 }
 
