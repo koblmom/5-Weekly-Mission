@@ -1,7 +1,7 @@
-import NavigationBar from "./components/section/NavigationBar/NavigationBar";
-import FolderInfo from "./components/section/FolderInfo/FolderInfo";
-import MainContent from "./components/section/MainContent/MainContent";
-import Footer from "./components/section/Footer/Footer";
+import NavigationBar from "./components/common/NavigationBar/NavigationBar";
+import FolderInfo from "./components/main/FolderInfo/FolderInfo";
+import MainContent from "./components/main/MainContent/MainContent";
+import Footer from "./components/common/Footer/Footer";
 import "./App.css";
 import "./global.css";
 
