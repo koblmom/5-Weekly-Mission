@@ -1,0 +1,43 @@
+.addLinkBar {
+  align-items: stretch;
+  background: #fff;
+  border: 1px solid #6d6afe;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin: 6rem auto 9rem;
+  padding: 1.6rem 2rem;
+  width: 80rem;
+
+  .container {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    gap: 12px;
+    height: inherit;
+  }
+  .image {
+    width: 2rem;
+    height: 2rem;
+  }
+  .input {
+    border: none;
+    font-size: 2rem;
+    flex-grow: 1;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.8rem;
+  background: linear-gradient(to right, #6d6afe, #6de3fe);
+  color: #fff;
+  width: 8rem;
+  height: 3.7rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
