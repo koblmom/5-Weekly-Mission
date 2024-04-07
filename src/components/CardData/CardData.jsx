@@ -1,5 +1,5 @@
-import convertCreatedAtToTimeAgo from "../../../utils/time";
-import useFetch from "../../../hooks/fetchDataHook";
+import TimeAgo from "../../utils/time";
+import useFetch from "../../hooks/fetchDataHook";
 import "./CardData.css";
 
 function CardData() {
@@ -36,7 +36,7 @@ function CardData() {
               </div>
               <div className="CardText">
                 <p className="CardText-time">
-                  {convertCreatedAtToTimeAgo(link.createdAt)}
+                  {<TimeAgo createdAt={link.createdAt} />}
                 </p>
                 <p className="CardText-description">{link.description}</p>
                 <div className="CardText-created-at">

@@ -1,4 +1,4 @@
-const TimeAgo = ({ createdAt }) => {
+const convertCreatedAtToTimeAgo = (createdAt) => {
   const timeDifference = (new Date() - new Date(createdAt)) / 1000;
 
   const minutes = Math.floor(timeDifference / 60);
@@ -30,4 +30,4 @@ const TimeAgo = ({ createdAt }) => {
   }
 };
 
-export default TimeAgo;
+export default convertCreatedAtToTimeAgo;
