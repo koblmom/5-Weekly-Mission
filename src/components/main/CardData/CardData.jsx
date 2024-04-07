@@ -1,5 +1,5 @@
-import TimeAgo from "../../util/TimeAgo";
-import useFetch from "../../hook/fetchDataHook";
+import TimeAgo from "../../../utils/TimeAgo";
+import useFetch from "../../../hooks/fetchDataHook";
 import "./CardData.css";
 
 function CardData() {

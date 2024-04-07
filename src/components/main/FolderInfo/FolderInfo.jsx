@@ -1,4 +1,4 @@
-import useFetch from "../../hook/fetchDataHook";
+import useFetch from "../../../hooks/fetchDataHook";
 import "./FolderInfo.css";
 
 function FolderInfo() {

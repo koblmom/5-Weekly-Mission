@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchUserData, fetchFolderData } from "../util/GetApi.jsx";
+import { fetchUserData, fetchFolderData } from "../utils/GetApi";
 
 function useFetch(url) {
   const [data, setData] = useState(null);
